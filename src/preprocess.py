@@ -19,10 +19,9 @@ def prepare_data(data_path="data/ENB2012_data_CSV.csv"):
     df = pd.read_csv(data_path)
     df = df.rename(columns=COLUMN_NAMES)
 
-    # Clean duplicate rows
-    df = df.drop_duplicates().copy()
+    # Drop missing/NaN rows and duplicate entries (Lab 7 style)
+    df = df.dropna().drop_duplicates().copy()
 
-    # Separate feature columns (X) and target columns (y)
     feature_columns = [
         "Relative_Compactness",
         "Surface_Area",
@@ -42,10 +41,8 @@ def prepare_data(data_path="data/ENB2012_data_CSV.csv"):
 
 
 def scale_features(X_train, X_test):
-    # Create the scaler
     scaler = StandardScaler()
 
-    # Fit the scaler on the training data and transform both train and test
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
