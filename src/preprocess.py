@@ -15,13 +15,15 @@ COLUMN_NAMES = {
 }
 
 
-def prepare_data(data_path="data/ENB2012_data.xlsx"):
-    df=pd.read_excel(data_path)
-    df=df.rename(columns=COLUMN_NAMES)
+def prepare_data(data_path="data/ENB2012_data_CSV.csv"):
+    df = pd.read_csv(data_path)
+    df = df.rename(columns=COLUMN_NAMES)
 
-    df=df.drop_duplicates().copy()
+    # Clean duplicate rows
+    df = df.drop_duplicates().copy()
 
-    feature_columns=[
+    # Separate feature columns (X) and target columns (y)
+    feature_columns = [
         "Relative_Compactness",
         "Surface_Area",
         "Wall_Area",
@@ -31,18 +33,21 @@ def prepare_data(data_path="data/ENB2012_data.xlsx"):
         "Glazing_Area",
         "Glazing_Area_Distribution",
     ]
-    target_columns=["Heating_Load", "Cooling_Load"]
+    target_columns = ["Heating_Load", "Cooling_Load"]
 
-    X=df[feature_columns]
-    y=df[target_columns]
+    X = df[feature_columns]
+    y = df[target_columns]
 
     return X, y
 
 
 def scale_features(X_train, X_test):
+    # Create the scaler
     scaler = StandardScaler()
 
+    # Fit the scaler on the training data and transform both train and test
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
+    print("Feature scaling completed.")
     return X_train_scaled, X_test_scaled, scaler
