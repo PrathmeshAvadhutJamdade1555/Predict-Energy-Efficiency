@@ -15,11 +15,14 @@ COLUMN_NAMES = {
 }
 
 
-def load_and_inspect(data_path="data/ENB2012_data.xlsx"):
-    df = pd.read_excel(data_path)
+def load_and_inspect(data_path="data/ENB2012_data_CSV.csv"):
+    # Read the dataset
+    df = pd.read_csv(data_path)
     df = df.rename(columns=COLUMN_NAMES)
 
-    print("Dataset dimensions:", df.shape)
+    # Inspect the dataset (Lab 7 style)
+    print("Dataset shape (rows, columns):", df.shape)
+
     print("\nColumn names:")
     print(df.columns.tolist())
 
@@ -29,7 +32,7 @@ def load_and_inspect(data_path="data/ENB2012_data.xlsx"):
     print("\nData types and missing-value overview:")
     df.info()
 
-    print("\nMissing values per column:")
+    print("\nMissing values in each column:")
     print(df.isnull().sum())
 
     print("\nSummary of numeric columns:")
@@ -39,6 +42,7 @@ def load_and_inspect(data_path="data/ENB2012_data.xlsx"):
 
 
 def plot_visualizations(df):
+    # Plot histogram for target variables
     plt.figure(figsize=(10, 4))
 
     plt.subplot(1, 2, 1)
@@ -59,5 +63,5 @@ def plot_visualizations(df):
     plt.show()
 
 
-df = load_and_inspect("data/ENB2012_data.xlsx")
+df = load_and_inspect("data/ENB2012_data_CSV.csv")
 plot_visualizations(df)
