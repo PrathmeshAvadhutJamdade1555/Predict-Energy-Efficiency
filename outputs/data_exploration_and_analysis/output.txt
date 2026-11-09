@@ -1,4 +1,4 @@
-Dataset dimensions: (1296, 10)
+Dataset dimensions: (768, 10)
 
 Column names:
 ['X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', 'X8', 'Y1', 'Y2']
@@ -12,8 +12,8 @@ First five rows:
 4  0.90  563.5  318.5  122.50  7.0  2.0  0.0  0.0  20.84  28.28
 
 Data types and missing-value overview:
-<class 'pandas.DataFrame'>
-RangeIndex: 1296 entries, 0 to 1295
+<class 'pandas.core.frame.DataFrame'>
+Index: 768 entries, 0 to 767
 Data columns (total 10 columns):
  #   Column  Non-Null Count  Dtype  
 ---  ------  --------------  -----  
@@ -28,15 +28,103 @@ Data columns (total 10 columns):
  8   Y1      768 non-null    float64
  9   Y2      768 non-null    float64
 dtypes: float64(10)
-memory usage: 101.4 KB
+memory usage: 66.0 KB
 
 Summary of numeric columns:
-               X1          X2          X3          X4         X5          X6          X7         X8          Y1          Y2
-count  768.000000  768.000000  768.000000  768.000000  768.00000  768.000000  768.000000  768.00000  768.000000  768.000000
-mean     0.764167  671.708333  318.500000  176.604167    5.25000    3.500000    0.234375    2.81250   22.307201   24.587760
-std      0.105777   88.086116   43.626481   45.165950    1.75114    1.118763    0.133221    1.55096   10.090196    9.513306
-min      0.620000  514.500000  245.000000  110.250000    3.50000    2.000000    0.000000    0.00000    6.010000   10.900000
-25%      0.682500  606.375000  294.000000  140.875000    3.50000    2.750000    0.100000    1.75000   12.992500   15.620000
-50%      0.750000  673.750000  318.500000  183.750000    5.25000    3.500000    0.250000    3.00000   18.950000   22.080000
-75%      0.830000  741.125000  343.000000  220.500000    7.00000    4.250000    0.400000    4.00000   31.667500   33.132500
-max      0.980000  808.500000  416.500000  220.500000    7.00000    5.000000    0.400000    5.00000   43.100000   48.030000
+               X1          X2          X3          X4  ...          X7         X8          Y1          Y2
+count  768.000000  768.000000  768.000000  768.000000  ...  768.000000  768.00000  768.000000  768.000000
+mean     0.764167  671.708333  318.500000  176.604167  ...    0.234375    2.81250   22.307201   24.587760
+std      0.105777   88.086116   43.626481   45.165950  ...    0.133221    1.55096   10.090196    9.513306
+min      0.620000  514.500000  245.000000  110.250000  ...    0.000000    0.00000    6.010000   10.900000
+25%      0.682500  606.375000  294.000000  140.875000  ...    0.100000    1.75000   12.992500   15.620000
+50%      0.750000  673.750000  318.500000  183.750000  ...    0.250000    3.00000   18.950000   22.080000
+75%      0.830000  741.125000  343.000000  220.500000  ...    0.400000    4.00000   31.667500   33.132500
+max      0.980000  808.500000  416.500000  220.500000  ...    0.400000    5.00000   43.100000   48.030000
+
+[8 rows x 10 columns]
+
+Missing values in dataset:
+        X1     X2     X3     X4     X5     X6     X7     X8     Y1     Y2
+0    False  False  False  False  False  False  False  False  False  False
+1    False  False  False  False  False  False  False  False  False  False
+2    False  False  False  False  False  False  False  False  False  False
+3    False  False  False  False  False  False  False  False  False  False
+4    False  False  False  False  False  False  False  False  False  False
+..     ...    ...    ...    ...    ...    ...    ...    ...    ...    ...
+763  False  False  False  False  False  False  False  False  False  False
+764  False  False  False  False  False  False  False  False  False  False
+765  False  False  False  False  False  False  False  False  False  False
+766  False  False  False  False  False  False  False  False  False  False
+767  False  False  False  False  False  False  False  False  False  False
+
+[768 rows x 10 columns]
+
+Sum of missing values in each column:
+X1    0
+X2    0
+X3    0
+X4    0
+X5    0
+X6    0
+X7    0
+X8    0
+Y1    0
+Y2    0
+dtype: int64
+
+x_train shape: (576, 8)
+x_test shape: (192, 8)
+y_train shape: (576, 2)
+y_test shape: (192, 2)
+
+Model training completed successfully
+
+y_pred shape: (192, 2)
+
+Mean absolute error: 2.2110304022050737
+
+Mean squared error: 9.50111732282138
+
+Root mean squared error: 3.082388249851303
+
+R2-score: 0.9035988991446424
+
+First five actual values:
+        Y1     Y2
+668  16.47  16.90
+324  13.17  16.39
+624  32.82  32.78
+690  41.32  46.23
+473  16.69  19.76
+
+First five predicted values:
+[[18.74948596 19.58940716]
+ [13.99724404 16.68878296]
+ [31.21077859 31.79446696]
+ [35.77339303 36.60950848]
+ [15.32297762 17.25271478]]
+
+Both actual vs predicted graphs saved successfully.
+
+Correlation between variables:
+              X1            X2            X3            X4  ...            X7            X8        Y1        Y2
+X1  1.000000e+00 -9.919015e-01 -2.037817e-01 -8.688234e-01  ... -2.960552e-15 -7.107006e-16  0.622272  0.634339
+X2 -9.919015e-01  1.000000e+00  1.955016e-01  8.807195e-01  ...  3.636925e-15  2.438409e-15 -0.658120 -0.672999
+X3 -2.037817e-01  1.955016e-01  1.000000e+00 -2.923165e-01  ... -8.567455e-17  2.067384e-16  0.455671  0.427117
+X4 -8.688234e-01  8.807195e-01 -2.923165e-01  1.000000e+00  ... -1.759011e-15 -1.078071e-15 -0.861828 -0.862547
+X5  8.277473e-01 -8.581477e-01  2.809757e-01 -9.725122e-01  ...  1.489134e-17 -2.920613e-17  0.889431  0.895785
+X6  4.678592e-17 -3.459372e-17 -2.429499e-17 -5.830058e-17  ... -9.406007e-16 -2.549352e-16 -0.002587  0.014290
+X7 -2.960552e-15  3.636925e-15 -8.567455e-17 -1.759011e-15  ...  1.000000e+00  2.129642e-01  0.269841  0.207505
+X8 -7.107006e-16  2.438409e-15  2.067384e-16 -1.078071e-15  ...  2.129642e-01  1.000000e+00  0.087368  0.050525
+Y1  6.222722e-01 -6.581202e-01  4.556712e-01 -8.618283e-01  ...  2.698410e-01  8.736759e-02  1.000000  0.975862
+Y2  6.343391e-01 -6.729989e-01  4.271170e-01 -8.625466e-01  ...  2.075050e-01  5.052512e-02  0.975862  1.000000
+
+[10 rows x 10 columns]
+
+Prediction for New Input:
+
+Heating Load: 61.87508095854347
+
+Cooling Load: 54.33737548296148
+
+Energy Efficiency Prediction Project Completed Successfully!
