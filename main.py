@@ -68,10 +68,6 @@ print("")
 print(f"Rows with empty values found: {df.isnull().sum().max()}. Rows with duplicate values found: {df.duplicated().sum().max()}.")
 print("")
 
-# There are no duplicate values, but in case there are: (as a good practice)
-df = df.dropna()
-df = df.drop_duplicates().copy()
-
 # Save correlation matrix
 corr_matrix = df.corr(numeric_only=True).round(3)
 
