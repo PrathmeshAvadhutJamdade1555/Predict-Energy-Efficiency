@@ -60,4 +60,4 @@ def plot_visualizations(df):
 
 
 df = load_and_inspect("data/ENB2012_data.xlsx")
-plot_visualizations(df) 
+plot_visualizations(df)
