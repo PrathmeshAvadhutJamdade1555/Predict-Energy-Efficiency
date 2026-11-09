@@ -71,3 +71,10 @@ print("")
 # There are no duplicate values, but in case there are: (as a good practice)
 df = df.dropna()
 df = df.drop_duplicates().copy()
+
+# Save correlation matrix
+corr_matrix = df.corr(numeric_only=True).round(3)
+
+corr_matrix.to_csv(
+    os.path.join(exploration_folder, "correlation_matrix.csv")
+)
