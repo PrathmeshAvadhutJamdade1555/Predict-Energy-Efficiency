@@ -41,3 +41,34 @@ with open("outputs/data_exploration_and_analysis/data_exploration_output.txt", "
 
         print("\nSummary of numeric columns:")
         print(df.describe())
+
+#Dataset preprocessing
+
+df = df.dropna().drop_duplicates().copy()
+feature_columns = [
+    'Relative Compactness',
+    'Surface Area',
+    'Wall Area',
+    'Roof Area',
+    'Overall Height',
+    'Orientation',
+    'Glazing Area',
+    'Glazing Area Distribution',
+]
+target_columns = ['Heating Load', 'Cooling Load']
+
+X = df[feature_columns]
+y = df[target_columns]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.20, random_state=42
+)
+
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+print("Preprocessing complete!")
+print("X_train shape:", X_train_scaled.shape)
+print("X_test shape:", X_test_scaled.shape)
+
