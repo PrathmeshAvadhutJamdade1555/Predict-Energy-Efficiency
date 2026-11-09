@@ -7,7 +7,10 @@ from sklearn.metrics import (
     r2_score,
 )
 from sklearn.model_selection import train_test_split
-
+try:
+    from preprocess import prepare_data, scale_features
+except ModuleNotFoundError:
+    from src.preprocess import prepare_data, scale_features
 def train_and_evaluate(data_path="data/ENB2012_data_CSV.csv"):
     X, y = prepare_data(data_path)
  
