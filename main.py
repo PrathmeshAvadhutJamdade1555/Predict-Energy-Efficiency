@@ -112,7 +112,6 @@ plt.close()
 print("Detailed data exploration along with graph saved in:", exploration_folder)
 print("\n")
 
-
 # Feature selection: "Orientation" and "Glazing Area Distribution" removed as they do not correlate well with Heating and Cooling Loads
 print("Feature selection:")
 feature_columns = [
@@ -127,7 +126,6 @@ target_columns = ["Heating Load", "Cooling Load"]
 print("Features:", feature_columns)
 print("Targets:", target_columns)
 print("")
-
 
 # Preprocessing
 df = df.dropna(subset = target_columns)
@@ -177,6 +175,7 @@ model.fit(X_train, y_train)
 print("Model training complete.")
 test_predictions = model.predict(X_test)
 
+
 # Model evaluation
 prediction_folder = "outputs/prediction_results"
 os.makedirs(prediction_folder, exist_ok=True)
@@ -208,3 +207,114 @@ cooling_r2 = r2_score(
     y_test["Cooling Load"],
     test_predictions[:, 1],
 )
+
+prediction_results = pd.DataFrame(
+    test_predictions,
+    columns=["Predicted Heating Load", "Predicted Cooling Load"],
+    index=y_test.index,
+)
+
+prediction_results["Actual Heating Load"] = y_test["Heating Load"]
+prediction_results["Actual Cooling Load"] = y_test["Cooling Load"]
+
+prediction_results["Heating Residual"] = (
+    prediction_results["Actual Heating Load"]
+    - prediction_results["Predicted Heating Load"]
+)
+
+prediction_results["Cooling Residual"] = (
+    prediction_results["Actual Cooling Load"]
+    - prediction_results["Predicted Cooling Load"]
+)
+
+prediction_results.to_csv(
+    os.path.join(prediction_folder, "test_predictions.csv"),
+    index_label="Original Row",
+)
+
+
+with open(
+    os.path.join(prediction_folder, "evaluation_metrics.txt"),
+    "w",
+    encoding="utf-8",
+) as file:
+    file.write("Test-set evaluation results\n")
+    file.write(f"Test rows: {len(y_test)}\n\n")
+
+    file.write("Heating Load\n")
+    file.write(f"MAE:  {heating_mae:.3f}\n")
+    file.write(f"MSE:  {heating_mse:.3f}\n")
+    file.write(f"RMSE: {heating_rmse:.3f}\n")
+    file.write(f"R2:   {heating_r2:.3f}\n\n")
+
+    file.write("Cooling Load\n")
+    file.write(f"MAE:  {cooling_mae:.3f}\n")
+    file.write(f"MSE:  {cooling_mse:.3f}\n")
+    file.write(f"RMSE: {cooling_rmse:.3f}\n")
+    file.write(f"R2:   {cooling_r2:.3f}\n")
+
+print("")
+print("Testing for Heating Load:")
+print(f"MAE  : {heating_mae:,.3f}")
+print(f"MSE  : {heating_mse:,.3f}")
+print(f"RMSE : {heating_rmse:,.3f}")
+print(f"R²   : {heating_r2:.3f}")
+print("")
+print("Testing for Cooling Load:")
+print(f"MAE  : {cooling_mae:,.3f}")
+print(f"MSE  : {cooling_mse:,.3f}")
+print(f"RMSE : {cooling_rmse:,.3f}")
+print(f"R²   : {cooling_r2:.3f}")
+
+plt.figure(figsize=(9, 7))
+
+all_values = np.concatenate([
+    y_test["Heating Load"].values,
+    y_test["Cooling Load"].values,
+    test_predictions[:, 0],
+    test_predictions[:, 1]
+])
+
+min_val = all_values.min()
+max_val = all_values.max()
+
+plt.plot(
+    [min_val, max_val],
+    [min_val, max_val],
+    color="black",
+    linestyle="--",
+    linewidth=2,
+    label="Ideal Prediction (y = x)"
+)
+
+plt.scatter(
+    y_test["Heating Load"],
+    test_predictions[:, 0],
+    alpha=0.7,
+    color="darkorange",
+    label="Heating Load",
+)
+
+plt.scatter(
+    y_test["Cooling Load"],
+    test_predictions[:, 1],
+    alpha=0.7,
+    color="seagreen",
+    label="Cooling Load",
+)
+
+plt.title("Actual vs Predicted Values")
+plt.xlabel("Actual Values")
+plt.ylabel("Predicted Values")
+plt.legend()
+plt.grid(alpha=0.3)
+
+plt.tight_layout()
+plt.savefig(
+    os.path.join(prediction_folder, "actual_vs_predicted.png"),
+    dpi=150,
+)
+plt.close()
+
+print("")
+print("Test results have been saved in:", prediction_folder)
