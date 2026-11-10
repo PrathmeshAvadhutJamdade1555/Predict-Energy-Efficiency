@@ -112,6 +112,23 @@ plt.close()
 print("Detailed data exploration along with graph saved in:", exploration_folder)
 print("\n")
 
+
+# Feature selection: "Orientation" and "Glazing Area Distribution" removed as they do not correlate well with Heating and Cooling Loads
+print("Feature selection:")
+feature_columns = [
+    "Relative Compactness",
+    "Surface Area",
+    "Wall Area",
+    "Roof Area",
+    "Overall Height",
+    "Glazing Area",
+]
+target_columns = ["Heating Load", "Cooling Load"]
+print("Features:", feature_columns)
+print("Targets:", target_columns)
+print("")
+
+
 # Preprocessing
 df = df.dropna(subset = target_columns)
 df = df.drop_duplicates().copy()
