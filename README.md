@@ -1,3 +1,23 @@
+# Predict Energy Efficiency
+
+AI101 mini-project that uses multiple linear regression to predict heating and cooling loads from building design data.
+
+## Team and responsibilities
+
+| Component lead | Team member | Entry No. and handle | Contribution |
+|---|---|---|---|
+| Documentation | Damera Vyshali | [@2026eeb1338](https://github.com/2026eeb1338) | Data visualisation, Project documentation and README |
+| Execution | Sahittya Dutta | [@2026esb1491](https://github.com/2026esb1491-web) | Data preprocessing and training, Feature Selection, Requirements and execution instructions |
+| PPT | Haral Anuradha Dnyaneshwar | [@2026aib1039](https://github.com/2026aib1039-coder) | Data testing and visualisation, Five-slide presentation |
+| Video | Prathmesh Jamdade | [@2026mcb1555](https://github.com/PrathmeshAvadhutJamdade1555) | Data exploration, evaluation, Project structure and Project video |
+
+**Group number:** 31
+
+- **Public GitHub repository:** will add later
+- **Project video:** will add later
+- **Presentation:** will add later
+
+## Project files
 
 ```textu
 .
