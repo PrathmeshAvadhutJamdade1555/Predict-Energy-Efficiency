@@ -14,7 +14,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 df = pd.read_csv("data/ENB2012_data_CSV.csv")
-
+print("Dataset has been loaded sucessfully.")
 df.columns = [
     "Relative Compactness",
     "Surface Area",
@@ -62,11 +62,11 @@ with open(
         print(df.corr().round(3))
 
 print("Dataset dimensions:", df.shape)
-print("\nColumn names:")
+print("Column names:")
 print(df.columns.tolist())
-print("")
 print(f"Rows with empty values found: {df.isnull().sum().max()}. Rows with duplicate values found: {df.duplicated().sum().max()}.")
 print("")
+print(f"The detailed Data Exploration has been saved as \033[94m{exploration_folder}/data_exploration_output.txt\033[0m")
 
 # Save correlation matrix
 corr_matrix = df.corr(numeric_only=True).round(3)
@@ -74,6 +74,7 @@ corr_matrix = df.corr(numeric_only=True).round(3)
 corr_matrix.to_csv(
     os.path.join(exploration_folder, "correlation_matrix.csv")
 )
+print(f"The detailed Correlation Matrix has been saved as \033[94m{exploration_folder}/correlation_matrix.csv\033[0m")
 
 fig, axes = plt.subplots(4, 2, figsize=(13, 18))
 
@@ -109,7 +110,7 @@ plt.savefig(
 )
 plt.close()
 
-print("Detailed data exploration along with graph saved in:", exploration_folder)
+print(f"The features vs targets plots have been saved as \033[94m{exploration_folder}/features_vs_targets.png\033[0m")
 print("\n")
 
 # Feature selection: "Orientation" and "Glazing Area Distribution" removed as they do not correlate well with Heating and Cooling Loads
@@ -231,6 +232,7 @@ prediction_results.to_csv(
     os.path.join(prediction_folder, "test_predictions.csv"),
     index_label="Original Row",
 )
+print(f"The test predictions have been saved as \033[94m{prediction_folder}/test_predictions.csv\033[0m")
 
 
 with open(
@@ -253,19 +255,22 @@ with open(
     file.write(f"RMSE: {cooling_rmse:.3f}\n")
     file.write(f"R2:   {cooling_r2:.3f}\n")
 
+
 print("")
-print("Testing for Heating Load:")
+print("Testing Results for Heating Load:")
 print(f"MAE  : {heating_mae:,.3f}")
 print(f"MSE  : {heating_mse:,.3f}")
 print(f"RMSE : {heating_rmse:,.3f}")
 print(f"R²   : {heating_r2:.3f}")
 print("")
-print("Testing for Cooling Load:")
+print("Testing Results for Cooling Load:")
 print(f"MAE  : {cooling_mae:,.3f}")
 print(f"MSE  : {cooling_mse:,.3f}")
 print(f"RMSE : {cooling_rmse:,.3f}")
 print(f"R²   : {cooling_r2:.3f}")
 
+print("")
+print(f"The evaluation of the model using test data has been saved as \033[94m{prediction_folder}/evaluation_metrics.txt\033[0m")
 plt.figure(figsize=(9, 7))
 
 all_values = np.concatenate([
@@ -316,5 +321,4 @@ plt.savefig(
 )
 plt.close()
 
-print("")
-print("Test results have been saved in:", prediction_folder)
+print(f"The actual value vs predicted value plot has been saved as \033[94m{prediction_folder}/actual_vs_predicted.png\033[0m")
