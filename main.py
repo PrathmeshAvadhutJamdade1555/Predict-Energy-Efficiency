@@ -74,3 +74,40 @@ corr_matrix = df.corr(numeric_only=True).round(3)
 corr_matrix.to_csv(
     os.path.join(exploration_folder, "correlation_matrix.csv")
 )
+
+fig, axes = plt.subplots(4, 2, figsize=(13, 18))
+
+for index, column in enumerate(df.columns[0:8]):
+    row = index // 2
+    position = index % 2
+
+    axes[row, position].scatter(
+        df[column],
+        df["Heating Load"],
+        alpha=0.6,
+        color="darkorange",
+        label="Heating Load",
+    )
+    axes[row, position].scatter(
+        df[column],
+        df["Cooling Load"],
+        alpha=0.6,
+        color="seagreen",
+        label="Cooling Load",
+    )
+
+    axes[row, position].set_title(f"{column} vs. Loads")
+    axes[row, position].set_xlabel(column)
+    axes[row, position].set_ylabel("Load")
+    axes[row, position].legend()
+
+fig.suptitle("Input Features Compared with Heating and Cooling Loads")
+plt.tight_layout()
+plt.savefig(
+    os.path.join(exploration_folder, "features_vs_targets.png"),
+    dpi=150,
+)
+plt.close()
+
+print("Detailed data exploration along with graph saved in:", exploration_folder)
+print("\n")
