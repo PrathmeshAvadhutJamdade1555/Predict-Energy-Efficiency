@@ -1,0 +1,14 @@
+Test-set evaluation results
+Test rows: 154
+
+Heating Load
+MAE:  2.164
+MSE:  9.218
+RMSE: 3.036
+R2:   0.912
+
+Cooling Load
+MAE:  2.201
+MSE:  9.954
+RMSE: 3.155
+R2:   0.893
