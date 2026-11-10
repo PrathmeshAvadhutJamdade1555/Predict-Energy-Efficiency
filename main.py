@@ -177,3 +177,34 @@ model.fit(X_train, y_train)
 print("Model training complete.")
 test_predictions = model.predict(X_test)
 
+# Model evaluation
+prediction_folder = "outputs/prediction_results"
+os.makedirs(prediction_folder, exist_ok=True)
+
+heating_mae = mean_absolute_error(
+    y_test["Heating Load"],
+    test_predictions[:, 0],
+)
+heating_mse = mean_squared_error(
+        y_test["Heating Load"],
+        test_predictions[:, 0],
+)
+heating_rmse = np.sqrt(heating_mse)
+heating_r2 = r2_score(
+    y_test["Heating Load"],
+    test_predictions[:, 0],
+)
+
+cooling_mae = mean_absolute_error(
+    y_test["Cooling Load"],
+    test_predictions[:, 1],
+)
+cooling_mse =  mean_squared_error(
+    y_test["Cooling Load"],
+        test_predictions[:, 1],
+)
+cooling_rmse = np.sqrt(cooling_mse)
+cooling_r2 = r2_score(
+    y_test["Cooling Load"],
+    test_predictions[:, 1],
+)
