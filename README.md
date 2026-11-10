@@ -13,7 +13,7 @@ AI101 mini-project that uses multiple linear regression to predict heating and c
 
 **Group number:** 31
 
-- **Public GitHub repository:** will add later
+- **Public GitHub repository:** [Predict Energy Efficiency](https://github.com/PrathmeshAvadhutJamdade1555/Predict-Energy-Efficiency)
 - **Project video:** will add later
 - **Presentation:** will add later
 
@@ -22,9 +22,6 @@ AI101 mini-project that uses multiple linear regression to predict heating and c
 ```textu
 .
 ├── main.py
-├── DATA_ANALYSIS.md
-├── Mini_Project_Slides.pdf
-├── VIDEO_SCRIPT.md
 ├── requirements.txt
 ├── data/
 │   ├── ENB2012_data_CSV.csv
