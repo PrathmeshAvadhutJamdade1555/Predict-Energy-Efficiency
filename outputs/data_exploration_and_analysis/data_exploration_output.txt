@@ -1,0 +1,72 @@
+Dataset dimensions: (768, 10)
+
+Column names:
+['Relative Compactness', 'Surface Area', 'Wall Area', 'Roof Area', 'Overall Height', 'Orientation', 'Glazing Area', 'Glazing Area Distribution', 'Heating Load', 'Cooling Load']
+
+First five rows:
+   Relative Compactness  Surface Area  Wall Area  Roof Area  Overall Height  Orientation  Glazing Area  Glazing Area Distribution  Heating Load  Cooling Load
+0                  0.98         514.5      294.0     110.25             7.0            2           0.0                          0         15.55         21.33
+1                  0.98         514.5      294.0     110.25             7.0            3           0.0                          0         15.55         21.33
+2                  0.98         514.5      294.0     110.25             7.0            4           0.0                          0         15.55         21.33
+3                  0.98         514.5      294.0     110.25             7.0            5           0.0                          0         15.55         21.33
+4                  0.90         563.5      318.5     122.50             7.0            2           0.0                          0         20.84         28.28
+
+Data types and missing values:
+<class 'pandas.DataFrame'>
+RangeIndex: 768 entries, 0 to 767
+Data columns (total 10 columns):
+ #   Column                     Non-Null Count  Dtype  
+---  ------                     --------------  -----  
+ 0   Relative Compactness       768 non-null    float64
+ 1   Surface Area               768 non-null    float64
+ 2   Wall Area                  768 non-null    float64
+ 3   Roof Area                  768 non-null    float64
+ 4   Overall Height             768 non-null    float64
+ 5   Orientation                768 non-null    int64  
+ 6   Glazing Area               768 non-null    float64
+ 7   Glazing Area Distribution  768 non-null    int64  
+ 8   Heating Load               768 non-null    float64
+ 9   Cooling Load               768 non-null    float64
+dtypes: float64(8), int64(2)
+memory usage: 60.1 KB
+
+Summary statistics:
+       Relative Compactness  Surface Area   Wall Area   Roof Area  Overall Height  Orientation  Glazing Area  Glazing Area Distribution  Heating Load  Cooling Load
+count            768.000000    768.000000  768.000000  768.000000       768.00000   768.000000    768.000000                  768.00000    768.000000    768.000000
+mean               0.764167    671.708333  318.500000  176.604167         5.25000     3.500000      0.234375                    2.81250     22.307201     24.587760
+std                0.105777     88.086116   43.626481   45.165950         1.75114     1.118763      0.133221                    1.55096     10.090196      9.513306
+min                0.620000    514.500000  245.000000  110.250000         3.50000     2.000000      0.000000                    0.00000      6.010000     10.900000
+25%                0.682500    606.375000  294.000000  140.875000         3.50000     2.750000      0.100000                    1.75000     12.992500     15.620000
+50%                0.750000    673.750000  318.500000  183.750000         5.25000     3.500000      0.250000                    3.00000     18.950000     22.080000
+75%                0.830000    741.125000  343.000000  220.500000         7.00000     4.250000      0.400000                    4.00000     31.667500     33.132500
+max                0.980000    808.500000  416.500000  220.500000         7.00000     5.000000      0.400000                    5.00000     43.100000     48.030000
+
+Missing values per column:
+Relative Compactness         0
+Surface Area                 0
+Wall Area                    0
+Roof Area                    0
+Overall Height               0
+Orientation                  0
+Glazing Area                 0
+Glazing Area Distribution    0
+Heating Load                 0
+Cooling Load                 0
+dtype: int64
+
+Duplicate rows: 0
+
+Correlation matrix:
+                           Relative Compactness  Surface Area  Wall Area  Roof Area  ...  Glazing Area  Glazing Area Distribution  Heating Load  Cooling Load
+Relative Compactness                      1.000        -0.992     -0.204     -0.869  ...        -0.000                     -0.000         0.622         0.634
+Surface Area                             -0.992         1.000      0.196      0.881  ...         0.000                      0.000        -0.658        -0.673
+Wall Area                                -0.204         0.196      1.000     -0.292  ...        -0.000                      0.000         0.456         0.427
+Roof Area                                -0.869         0.881     -0.292      1.000  ...        -0.000                     -0.000        -0.862        -0.863
+Overall Height                            0.828        -0.858      0.281     -0.973  ...         0.000                     -0.000         0.889         0.896
+Orientation                               0.000        -0.000     -0.000     -0.000  ...        -0.000                     -0.000        -0.003         0.014
+Glazing Area                             -0.000         0.000     -0.000     -0.000  ...         1.000                      0.213         0.270         0.208
+Glazing Area Distribution                -0.000         0.000      0.000     -0.000  ...         0.213                      1.000         0.087         0.051
+Heating Load                              0.622        -0.658      0.456     -0.862  ...         0.270                      0.087         1.000         0.976
+Cooling Load                              0.634        -0.673      0.427     -0.863  ...         0.208                      0.051         0.976         1.000
+
+[10 rows x 10 columns]
