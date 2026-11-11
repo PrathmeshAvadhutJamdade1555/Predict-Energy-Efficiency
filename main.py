@@ -14,7 +14,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 df = pd.read_csv("data/ENB2012_data_CSV.csv")
-print("Dataset has been loaded sucessfully.")
+print("Dataset has been loaded sucessfully from data/ENB2012_data_CSV.csv")
 df.columns = [
     "Relative Compactness",
     "Surface Area",
